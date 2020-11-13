@@ -1,0 +1,50 @@
+<div class="footer">
+    <div class="pull-right">&copy; 2016-2017 <a href="" target="_blank">ci3-admin</a>
+    </div>
+</div>
+<div  id="loading" class="hidden"><div class=" mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="margin-left: 40%"></div></div>
+<div id="bg" class="hidden" >
+    <div class="masking"></div>
+    <div class="bg-loading" >
+        <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"><br>正在处理中...  请耐心等待。</div>
+    </div>
+</div>
+<script src="{{$public}}/js/jquery.min.js"></script>
+<script src="{{$public}}/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="{{$public}}/js/material.min.js"></script>
+<script src="{{$public}}/js/contabs.js"></script>
+<script src="{{$public}}/js/plugins/pace/pace.min.js"></script>
+<script src="{{$public}}/js/plugins/toastr/toastr.min.js"></script>
+<script src="{{$public}}/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="{{$public}}/js/jquery.cookie.js"></script>
+<script src="{{$public}}/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="{{$public}}/layer/layer.js"></script>
+<script src="{{$public}}/js/hplus.min.js?v=4.1.0"></script>
+<script src="{{$public}}/js/server/ajax.common.js"></script>
+
+<script type="text/javascript">
+// {{* toastr 提示 *}}
+$(function(){
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "7000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+    // $("#showtoast").click(function(){
+    //     toastr.success('祝贺你成功了');
+    //     toastr.info('这是一个提示信息');
+    //     toastr.warning('警告你别来烦我了');
+    //     toastr.error('出现错误，请更改');
+    // });
+})
+</script>

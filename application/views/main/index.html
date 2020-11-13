@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+{{include file="public/header.html"}}
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        {{include file="public/navbar.html"}}
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            {{include file="public/menu.html"}}
+            <br>
+            <div class="row" id="content-main">
+                {{* 订单 *}}
+                <div class="col-sm-11">
+                    <div class="col-sm-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title" style="border-color:#1ab394">
+                                <span class="label label-primary pull-right">今天</span>
+                                <h5></h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">{{$info['date_order_num']}} 单</h1>
+                                <div class="stat-percent font-bold text-navy"></div>
+                                <small>{{$info['day']}}日</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <span class="label label-success pull-right">至今</span>
+                                <h5>【处方配药】待处理量</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">{{$info['pres_order_num']}} 单</h1>
+                                <div class="stat-percent font-bold text-success"></div>
+                                <small>至今</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-11">
+                    <div class="col-sm-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>最近10笔预约订单</h5>
+                                <div class="ibox-tools">
+                                    <small class="text-navy font-bold">总订单数量：{{$info['date_order_total']}} 笔</small>
+                                </div>
+                            </div>
+                            <div class="ibox-content" style="min-height: 283px">
+                                <table class="table table-hover no-margins">
+                                    <thead>
+                                        <tr>
+                                            <th>预约号</th>
+                                            <th>预约人</th>
+                                            <th>预约医生</th>
+                                            <th>预约时间</th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{if !empty($info['date_order_list'])}}
+                                        {{foreach $info['date_order_list'] as $k=>$v}}
+                                        <tr>
+                                            <td><a href="JavaScript:;">{{$v['date_code']}}</a></td>
+                                            <td>{{$v['real_name']}}</td>
+                                            <td>{{$v['doc_name']}}</td>
+                                            <td>{{$v['date_day']}} {{$v['date_time']}}</td>
+                                            <td>{{$v['mask']}}</td>
+                                        </tr>
+                                        {{/foreach}}
+                                        {{else}}
+                                        <tr class="no-records-found t-align">
+                                            <td colspan="4">没有找到匹配的记录</td>
+                                        </tr>
+                                        {{/if}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>最近处方配药订单前10条</h5>
+                                <div class="ibox-tools">
+                                    <small class="text-navy font-bold">总数量：{{$info['pres_order_total']}} 件</small>
+                                </div>
+                            </div>
+                            <div class="ibox-content" style="min-height: 283px">
+                                <table class="table table-hover no-margins">
+                                    <thead>
+                                        <tr>
+                                            <th>订单编号</th>
+                                            <th>就诊人</th>
+                                            <th>状态</th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{if !empty($info['pres_order_list'])}}
+                                        {{foreach $info['pres_order_list'] as $k=>$v}}
+                                        <tr>
+                                            <td>{{$v['cf_code']}}</td>
+                                            <td>{{$v['user_name']}}</td>
+                                            <td>{{$v['cf_status_v']}}</td>
+                                            <td>{{$v['mask']}}</td>
+                                        </tr>
+                                        {{/foreach}}
+                                        {{else}}
+                                        <tr class="no-records-found t-align">
+                                            <td colspan="4">没有找到匹配的记录</td>
+                                        </tr>
+                                        {{/if}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{include file="public/footer.html"}}
+        </div>
+        <!--右侧部分结束-->
+    </div>
+</body>
+</html>

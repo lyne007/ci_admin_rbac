@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+{{include file="public/header.html"}}
+<link href="{{$public}}/css/plugins/iCheck/custom.css" rel="stylesheet">
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        {{include file="public/navbar.html"}}
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            {{include file="public/menu.html"}}
+            <br>
+            <div class="row" id="content-main">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div id="adminList" class="ibox-title" style="min-height:94px">
+                            <h5>管理员列表</h5>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="input-group m-b">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-white" type="button" aria-expanded="false">管理员账号</button>
+                                        </div>
+                                        <input class="form-control" type="text" name="account" value="{{if isset($smarty.session.option['account'])}}{{$smarty.session.option['account']}}{{/if}}">
+                                        <span class="input-group-btn search">
+                                            <button class="btn btn-primary" type="submit">搜索 </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="input-group m-b">
+                                        <span class="input-group-btn">
+                                            <a data-toggle="modal" class="btn btn-success addAdmin-btn" href="#modal-form-add">创建管理员</a>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div id="ajaxAdminList" class="ibox-content">
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            {{* 创建管理员 *}}
+            <div id="modal-form-add" class="modal fade" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-11">
+                                    <div class="m-b-md">
+                                        <h2>完善管理员信息</h2>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button class="close" type="button" data-dismiss="modal">
+                                    <span aria-hidden="true">×</span>
+                                    <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <form class="form-horizontal m-t" id="signupForm-add" action="{{$module}}/power/ajaxAddAdmin" method="post">
+                                                
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">昵称：</label>
+                                                    <div class="col-sm-8">
+                                                        <input id="username" name="real_name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">账号：</label>
+                                                    <div class="col-sm-8">
+                                                        <input id="email" name="account" class="form-control" type="email">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">密码：</label>
+                                                    <div class="col-sm-8">
+                                                        <input id="password-add" name="password" class="form-control" type="password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">确认密码：</label>
+                                                    <div class="col-sm-8">
+                                                        <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                                                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">管理员类型：</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="radio i-checks">
+                                                            <label class=""><input type="radio" name="admin_type" value="1" checked>系统管理员</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="js-html"></div>
+                                                <div class="form-group {{if empty($rolelist)}}has-error{{/if}}">
+                                                    <label class="col-sm-3 control-label">分配角色：</label>
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control m-b roleList" name="role_id">
+                                                        {{if !empty($rolelist)}}
+                                                        {{foreach $rolelist as $v}}
+                                                        <option value="{{$v['id']}}">{{$v['name']}}</option>
+                                                        {{/foreach}}
+                                                        {{else}}
+                                                        <option value="">请去添加角色</option>
+                                                        {{/if}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="js-vendor-html"></div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-8 col-sm-offset-3">
+                                                        {{if $rolelist}}
+                                                        <button class="btn btn-primary" type="submit">提交</button>
+                                                        <button class="hidden reset-btn" type="reset"></button>
+                                                        {{else}}
+                                                        <button class="btn btn-default" disabled type="submit">提交</button>
+                                                        {{/if}}
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            {{* 创建管理员 end *}}
+            {{* 编辑管理员 *}}
+            <div id="modal-form-edit" class="modal fade" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-11">
+                                    <div class="m-b-md">
+                                        <h2>更新管理员信息</h2>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button class="close" type="button" data-dismiss="modal">
+                                    <span aria-hidden="true">×</span>
+                                    <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <form class="form-horizontal m-t" id="signupForm-edit" action="{{$module}}/power/ajaxEditAdmin">
+                                                <input type="hidden" name="id" value=""/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">昵称：</label>
+                                                    <div class="col-sm-8">
+                                                        <input name="real_name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">账号：</label>
+                                                    <div class="col-sm-8">
+                                                        <input name="account" class="form-control" type="email"  disabled="" placeholder="已被禁用">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">密码：</label>
+                                                    <div class="col-sm-8">
+                                                        <input id="password-edit" name="password" class="form-control" type="password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">确认密码：</label>
+                                                    <div class="col-sm-8">
+                                                        <input id="confirm_password2" name="confirm_password" class="form-control" type="password">
+                                                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">管理员类型：</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="radio i-checks">
+                                                            <label class=""><input type="radio" name="admin_type" value="1" checked>系统管理员</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="js-html"></div>
+                                                <div class="form-group {{if empty($rolelist)}}has-error{{/if}}">
+                                                    <label class="col-sm-3 control-label">分配角色：</label>
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control m-b roleList" name="role_id">
+                                                        {{if !empty($rolelist)}}
+                                                        {{foreach $rolelist as $v}}
+                                                        <option value="{{$v['id']}}">{{$v['name']}}</option>
+                                                        {{/foreach}}
+                                                        {{else}}
+                                                        <option value="">请去添加角色</option>
+                                                        {{/if}}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="js-vendor-html"></div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-8 col-sm-offset-3">
+                                                        {{if $rolelist}}
+                                                        <button class="btn btn-primary" type="submit">提交</button>
+                                                        {{else}}
+                                                        <button class="btn btn-default" disabled type="submit">提交</button>
+                                                        {{/if}}
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            {{* 编辑管理员 end *}}
+            {{include file="public/footer.html"}}
+            <script src="{{$public}}/js/plugins/chosen/chosen.jquery.js"></script>
+            <script src="{{$public}}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+            <script src="{{$public}}/js/plugins/validate/jquery.validate.min.js"></script>
+            <script src="{{$public}}/js/plugins/validate/messages_zh.min.js"></script>
+            <script src="{{$public}}/js/form-validate.js"></script>
+            <script src="{{$public}}/js/plugins/iCheck/icheck.min.js"></script>
+            
+            <script type="text/javascript">
+            
+            $(function(){
+                $('.radio').iCheck({ 
+                  labelHover : true, 
+                  cursor : true, 
+                  checkboxClass : 'icheckbox_square-green', 
+                  radioClass : 'iradio_square-green', 
+                  increaseArea : '20%' 
+                });
+                $(".addAdmin-btn").click(function(){
+                    $("#modal-form-add").find(".reset-btn").trigger('click');
+                })
+                
+                // 获取管理员列表
+                getAdminList();
+
+                $("#adminList button[type='submit']").click(function(){
+                    var url = module + '/power/ajaxAdminList';
+                    var account = $("#adminList").find("input[name='account']").val();
+                    if(account==''){
+                        layer.msg('请输入账号'); 
+                        return false;
+                    }
+                    posth(url,{account:account},function(res){
+                        $("#ajaxAdminList").html(res);
+                    });
+                });
+                
+                // 点击添加
+                $("#modal-form-add form").submit(function(e){
+                    submitAjax($(this),function(res){
+                        if(res.success){
+                            $('.close').trigger('click');
+                            layer.msg(res.msg);
+                            getAdminList();
+                        }
+                    });
+                    return false;
+                });
+                
+                
+        
+
+            })
+            // 获取管理员列表
+            function getAdminList(){
+
+                var url = module + '/power/ajaxAdminList';
+                posth(url,null,function(res){
+                    $("#ajaxAdminList").html(res);
+                });
+            }
+
+            </script>
+            
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+{{include file="public/header.html"}}
+<link rel="stylesheet" href="{{$public}}/css/ztree/zTreeStyle.css" type="text/css">
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        {{include file="public/navbar.html"}}
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            {{include file="public/menu.html"}}
+            <div class="row" id="content-main" style="height:calc(100% - 100px);">
+                <br>
+                
+                <div class="col-sm-6 animated fadeInRight">
+                    <div class="mail-box-header">
+
+                        <form method="get" action="#" class="pull-right mail-search">
+                            <div class="input-group">
+                                <a class="btn btn-white btn-xs pull-right" href="javascript:;" onclick="javascript:history.back(-1)">返回上一页</a>
+                            </div>
+                        </form>
+                        <h2>权限分配情况</h2>
+                    </div>
+                    <div class="mail-box">
+                        <div id="assign-power" class="xxListData name5">
+                            <input type="hidden" name="mask-rid" value="{{$roleinfo['id']}}">
+                            <div class="ztree-div pl50 pb20 pt10">
+                                <ul id="treeDemo" class="ztree"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content mailbox-content">
+                            <div class="file-manager">
+                                <div class="space-25"></div>
+                                <h5>角色信息</h5>
+                                <ul class="folder-list m-b-md category-list" style="padding: 0">
+                                    <li>
+                                        <a href="javascript:;"> <i class="fa fa-circle text-navy"></i>名称：{{$roleinfo['name']}} 
+                                            <!-- <span class="label label-warning pull-right">16</span> -->
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"> <i class="fa fa-circle text-danger"></i>描述：{{$roleinfo['desc']}} </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"> <i class="fa fa-circle text-warning"></i>状态：{{if $roleinfo['status']}}正常{{else}}禁用{{/if}} </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"> <i class="fa fa-circle text-primary"></i>创建时间：{{date('Y-m-d H:i:s',$roleinfo['add_time'])}} </a>
+                                    </li>
+                                </ul>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6 p0">
+                                        <input class="btn btn-w-m btn-white" type="submit" onclick="changeNodeStatas(true)" value="全部展开" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input class="btn btn-w-m btn-white" type="submit" onclick="changeNodeStatas(false)" value="全部折叠" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt20">
+                                    <a id="savePower" class="btn btn-block btn-primary compose-mail" href="javascript:;">提交更新</a>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{include file="public/footer.html"}}
+            <script type="text/javascript" src="{{$public}}/js/ztree/jquery.ztree.core.js"></script>
+            <script type="text/javascript" src="{{$public}}/js/ztree/jquery.ztree.excheck.js"></script>
+        </div>
+        <!--右侧部分结束-->
+    </div>
+
+    <script type="text/javascript">
+    /* 权限分配、ztree配置 js */
+    var setting = {
+        view: {
+            showIcon: false
+        },
+        check: {
+            enable: true,
+            chkStyle: "checkbox",
+            chkboxType: { "Y": "ps", "N": "s" }
+        },
+        data: {
+            simpleData: {                         
+                enable: true,  
+                idKey: "id",  //id和pid，这里不用多说了吧，树的目录级别  
+                pIdKey: "pid",  
+                rootPId: 0   //根节点  
+            },
+            key: {
+                name: "name"
+            }   
+        },
+        callback:{
+            onCheck:onCheck
+        }
+    };
+
+    /* 数据 可设置默认勾选状态 */
+    var zNodes;
+    
+    $(document).ready(function(){
+        var rid = $("#assign-power input[name='mask-rid']").val();
+        post(module+'/power/getPower',{id:rid},function(data){
+            if(data.length==0){
+                $(".ztree-div").html("<h1 class='logo-name f40'>找不到哦.</h1><a class='btn btn-success' href='{{$module}}/power/menu'>马上去添加</a>");
+            }else{
+                zNodes=data;    //将请求返回的数据存起来      
+                /* 初始化ztree */
+                var treeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                treeObj.expandAll(true);  // 全部展开
+            }
+        });
+    });
+    
+    /* 点击事件 获取所有被选中节点的值 */
+    function onCheck(e,treeId,treeNode){
+        var treeObj=$.fn.zTree.getZTreeObj("treeDemo"),
+        nodes=treeObj.getCheckedNodes(true),
+        v="";
+        for(var i=0;i<nodes.length;i++){
+            v+=nodes[i].id + ",";
+            // alert(nodes[i].id); //获取选中节点的id
+            // alert(nodes[i].pId); //获取选中节点的pid
+            // alert(nodes[i].name); //获取选中节点的name
+        }
+        return v;
+    }
+    
+    // 点击保存
+    $("#savePower").click(function(){
+        var v = onCheck();
+        var rid = $("#assign-power input[name='mask-rid']").val();
+        var url = module+'/power/roleAddPower';
+        var data = {menu_id:v,id:rid};
+        post(url,data,function(res){
+            res.success && $('.close').trigger('click');
+            layer.msg(res.msg,{icon:1});
+        });
+    }) 
+
+    // 展开/折叠 所有节点
+    function changeNodeStatas(Boolean){
+         var treeObj=$.fn.zTree.getZTreeObj("treeDemo");
+         treeObj.expandAll(Boolean);
+    }
+
+</script>
+
+</body>
+</html>

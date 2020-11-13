@@ -1,0 +1,77 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="nav-close"><i class="fa fa-times-circle"></i></div>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span><img class="img-circle mb10 " style="border-radius:0%" width="60" alt="image-logo" src="" /></span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">{{$smarty.session.login.account}}</strong>
+                            </span>
+                            <span class="text-muted text-xs block">{{$smarty.session.login.real_name}}
+                                <b class="caret"></b>
+                            </span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a data-toggle="modal" class="edit_pass" href="#modal-form-password">修改密码</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{$module}}/login/loginOut">安全退出</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">L</div>
+            </li>
+            {{if !empty($navbar_list)}}
+            {{foreach $navbar_list as $n}}
+            <li class="{{if $title!='管理员'}} {{if in_array($title,$n.active)!==false}}active{{/if}}{{else}}{{if in_array($title,$n.active)!==false}}active{{/if}}{{/if}}">
+                <a class="J_menuItem" href="{{$module}}{{$n.navbar_url}}">
+                    <i class="fa {{$n.icon}}"></i>
+                    <span class="nav-label">{{$n.name}}</span>
+                </a>
+                {{if !empty($n.child)}}
+                <ul class="nav nav-second-level">
+                {{foreach $n.child as $cn}}
+                    <li class="{{if $title==$cn.name}}active{{/if}}"><a class="J_menuItem" href="{{$module}}{{$cn.navbar_url}}">{{$cn.name}}</a></li>
+                {{/foreach}}
+                </ul>
+                {{/if}}
+            </li>
+            {{/foreach}}
+            {{else}}
+            <li class="{{if $nav=='h-m'}}active{{/if}}">
+                <a class="J_menuItem" href="javascript:;">
+                    <i class="fa fa-home"></i>
+                    <span class="nav-label">主页2</span>
+                </a>
+            </li>
+            {{if $smarty.session.login['account']=='lyne007@163.com'}}
+
+            <li class="{{if $nav=='a-l' || $nav=='a-a' || $nav=='r-l' || $nav=='r-a' || $nav=='p-l'}}active{{/if}}">
+                <a href="javascript:;">
+                    <i class="fa fa-cogs"></i>
+                    <span class="nav-label">权限管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li {{if $nav=='a-l'}}class="active"{{/if}}>
+                        <a class="J_menuItem" href="{{$module}}/power/admin">管理员查询</a>
+                    </li>
+                    <li {{if $nav=='r-l'}}class="active"{{/if}}>
+                        <a class="J_menuItem" href="{{$module}}/power/role">角色查询</a>
+                    </li>
+                    <li {{if $nav=='p-l'}}class="active"{{/if}}>
+                        <a class="J_menuItem" href="{{$module}}/power/menu">菜单查询</a>
+                    </li>
+                </ul>
+            </li>
+            {{/if}}
+            {{/if}}
+            <br>
+            <br>
+            <br>
+        </ul>
+    </div>
+</nav>
+{{include file="./password-edit.html"}}

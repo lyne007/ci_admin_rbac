@@ -1,0 +1,63 @@
+.ml-20{margin-left: -20px;}
+.ml20{margin-left: 20px;}
+.mt5{margin-top: 5px;}
+.mt20{margin-top: 20px;}
+.mb5{margin-bottom: 5px;}
+.mb10{margin-bottom: 10px;}
+.mb20{margin-bottom: 20px;}
+.mr10{margin-right: 10px;}
+.mt0{margin-top: 0px;}
+.mb0{margin-bottom: 0px;}
+.ml0{margin-left: 0px;}
+.mr0{margin-right: 0px;}
+.ml15{margin-left: 15px;}
+.ml5{margin-left: 5px;}
+.p0{padding:0;}
+.pt10{padding-top: 10px;}
+.pl0{padding-left: 0px;}
+.pr0{padding-right: 0px;}
+.pb0{padding-bottom: 0px;}
+.pb20{padding-bottom: 20px;}
+.pl50{padding-left: 50px;}
+.pl20{padding-left: 20px;}
+.p20{padding:20px;}
+.t-align{text-align: center;}
+.f20{font-size: 20px}
+.f40{font-size: 40px}
+.min-w50{min-width: 50px;}
+.min-h500{min-height: 450px;}
+.fl{float:left;}
+
+.cursor{cursor:pointer;}
+.ztree-div{margin:1px auto;min-height:420px;line-height:25px;}
+
+/*遮罩层 loading*/
+#bg .masking{
+    background: #333;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 9992;
+}
+.bg-loading{
+    background: #fff;
+    width: 200px;
+    z-index: 9993;
+    position: absolute;
+    left: 45%;
+    top:45%;
+    color:#fff;
+}
+
+.i-del{
+    color: red; position: absolute;right: -2px;top:-2px;
+    display: none;
+}
+.i-del:hover{
+    cursor:pointer;
+}

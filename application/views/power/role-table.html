@@ -1,0 +1,125 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>角色名称</th>
+            <th>描述</th>
+            <th>创建时间</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    {{if !empty($rolelist)}}
+    <tbody>
+    {{foreach $rolelist as $k=>$v}}
+        <tr>
+            <td class="key_id" tmp-id="{{$v['id']}}">{{($k+1)}}</td>
+            <td>{{$v['name']}}</td>
+            <td>{{$v['desc']}}</td>
+            <td>{{date('Y-m-d H:i:s',$v['add_time'])}}</td>
+            <td>
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" {{if $v['status']}}checked{{/if}} class="onoffswitch-checkbox" id="example{{$k}}">
+                        <label class="onoffswitch-label" for="example{{$k}}">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <a class="btn btn-xs btn-outline btn-success" href="{{$module}}/power/roleTree/{{$v['id']}}">设置权限</a>
+                <a data-toggle="modal" class="btn btn-xs btn-outline btn-warning role-edit" href="#modal-form-editrole">编辑</a>
+                <a class="btn btn-xs btn-outline btn-danger role-delete" href="JavaScript:;">删除</a>
+            </td>
+        </tr>
+    {{/foreach}}
+    {{else}}
+        <tr class="no-records-found t-align">
+            <td colspan="6">没有找到匹配的记录</td>
+        </tr>
+    {{/if}}
+    </tbody>
+</table>
+
+<div id="page-div" class="row">
+    <div class="col-sm-6">
+        <div id="editable_info" class="dataTables_info" role="alert" aria-live="polite" aria-relevant="all">显示 <span class="start">0</span> 到 <span class="end">0</span> 项，共 {{$total}} 项</div>
+    </div>
+    <div class="col-sm-6">
+        <div id="editable_paginate" class="dataTables_paginate paging_simple_numbers">
+            <ul class="pagination">
+                {{if !empty($showpage)}}
+                <li id="page-first" class="paginate_button previous" aria-controls="editable" tabindex="0">
+                    <a href="{{$module}}/power/ajaxRoleList/1">首页</a>
+                </li>
+                {{$showpage}}
+                <li id="page-last" class="paginate_button next" aria-controls="editable" tabindex="0">
+                    <a href="{{$module}}/power/ajaxRoleList/{{$last_page}}">尾页</a>
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+    // 显示从1到10项，共xx项
+    var start = $("#ajaxRoleList table tbody tr:first").find('.key_id').html();
+    var end = $("#ajaxRoleList table tbody tr:last").find('.key_id').html();
+    $("#page-div .start").html(start);
+    $("#page-div .end").html(end);
+
+    // 上一页下一页改为post
+    $("#page-div .paginate_button").click(function (event) {
+        if($(this).hasClass('active')) return false;
+        var url = $(this).children('a').attr('href');
+        posth(url,null,function (r) {
+            $('#ajaxRoleList').html(r);
+        });
+        // return false;
+        event.preventDefault();
+    });
+
+    // 删除
+    $("#ajaxRoleList .role-delete").click(function(){
+        var $this = $(this);
+        layer.prompt({title: '输入管理员密码口令，并确认', formType: 1}, function(pass, index){
+            layer.close(index);
+            post(module+'/power/verifyPass',{pass:pass},function(checkres){
+                if(checkres.success){
+                    var url = module + '/power/ajaxDelRole';
+                    var role_id = $this.parent('td').parent('tr').find('td:first').attr('tmp-id');
+                    ajaxStatus = true;
+                    post(url,{id:role_id},function(res){
+                        res.success && $('.close').trigger('click');
+                        layer.msg(res.msg,{icon:1,time:1200},function(){
+                            getRoleList();
+                        });
+                    })
+                }else{
+                    layer.msg(checkres.msg,{icon:2});
+                }
+
+            });
+        });
+        
+    });
+
+    // 获取编辑管理员
+    $("#ajaxRoleList .role-edit").click(function(){
+        var url = module + '/power/getRoleInfo';
+        var role_id = $(this).parents('tr').find('td:first').attr('tmp-id');
+        post(url,{id:role_id},function(r){
+            $("#modal-form-editrole").find("input[name='id']").val(r.id);
+            $("#modal-form-editrole").find("input[name='name']").val(r.name);
+            $("#modal-form-editrole").find("textarea[name='desc']").val(r.desc);
+        });
+    });
+    
+})
+</script>
+
+
+
