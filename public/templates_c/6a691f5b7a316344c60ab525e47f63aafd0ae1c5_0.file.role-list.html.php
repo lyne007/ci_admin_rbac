@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2020-11-13 08:44:01
+<?php /* Smarty version 3.1.27, created on 2020-11-20 06:54:44
          compiled from "E:\wamp\www\BONLI\ci3\application\views\power\role-list.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:7725fae47516593d7_01485221%%*/
+/*%%SmartyHeaderCode:315375fb7683482f6e7_37630283%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6a691f5b7a316344c60ab525e47f63aafd0ae1c5' => 
     array (
       0 => 'E:\\wamp\\www\\BONLI\\ci3\\application\\views\\power\\role-list.html',
-      1 => 1605257038,
+      1 => 1605855164,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '7725fae47516593d7_01485221',
+  'nocache_hash' => '315375fb7683482f6e7_37630283',
   'variables' => 
   array (
     'public' => 0,
@@ -21,13 +21,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5fae47516a3763_72612971',
+  'unifunc' => 'content_5fb768348b8289_40078587',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5fae47516a3763_72612971')) {
-function content_5fae47516a3763_72612971 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5fb768348b8289_40078587')) {
+function content_5fb768348b8289_40078587 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '7725fae47516593d7_01485221';
+$_smarty_tpl->properties['nocache_hash'] = '315375fb7683482f6e7_37630283';
 ?>
 <!DOCTYPE html>
 <html>
@@ -111,7 +111,7 @@ $_smarty_tpl->properties['nocache_hash'] = '7725fae47516593d7_01485221';
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">角色名称：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="name" class="form-control" type="text" aria-required="true" class="error" />
+                                                        <input name="name" class="form-control" type="text" required="" aria-required="true" class="error"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -192,30 +192,6 @@ $_smarty_tpl->properties['nocache_hash'] = '7725fae47516593d7_01485221';
 ?>
 
             <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/chosen/chosen.jquery.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/datapicker/bootstrap-datepicker.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/validate/jquery.validate.min.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/validate/messages_zh.min.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/form-validate-role.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/switchery/switchery.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
  type="text/javascript">
                 $(function(){
                     // 获取管理员列表
@@ -242,6 +218,16 @@ $_smarty_tpl->properties['nocache_hash'] = '7725fae47516593d7_01485221';
 
                     // 编辑管理员
                     $("#modal-form-editrole form").submit(function(e){
+                        var mark = true;
+                        $("#modal-form-editrole form").find('input').each(function(){
+                            var msg = $("#modal-form-editrole form").find("input[name='"+this.name+"']").attr('msg');
+                            if(this.value==''){
+                                layer.msg(msg,{icon:2,time:1200});
+                                mark = false;
+                                return mark;
+                            }
+                        });
+                        if(!mark) return false;
                         submitAjax($(this),function(res){
                             res.success && $('.close').trigger('click');
                             layer.msg(res.msg,{icon:1,time:1200},function(){

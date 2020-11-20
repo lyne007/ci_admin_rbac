@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2020-11-20 05:46:32
+<?php /* Smarty version 3.1.27, created on 2020-11-20 06:58:58
          compiled from "E:\wamp\www\BONLI\ci3\application\views\power\admin-list.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:22295fb75838047b01_05173597%%*/
+/*%%SmartyHeaderCode:283505fb76932c5bf63_08094932%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '05fc578bedc2482c1ba458331e39c4303a1be87b' => 
     array (
       0 => 'E:\\wamp\\www\\BONLI\\ci3\\application\\views\\power\\admin-list.html',
-      1 => 1605851189,
+      1 => 1605855508,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '22295fb75838047b01_05173597',
+  'nocache_hash' => '283505fb76932c5bf63_08094932',
   'variables' => 
   array (
     'public' => 0,
@@ -23,13 +23,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5fb75838168c49_73674890',
+  'unifunc' => 'content_5fb76932d55fa0_09735166',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5fb75838168c49_73674890')) {
-function content_5fb75838168c49_73674890 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5fb76932d55fa0_09735166')) {
+function content_5fb76932d55fa0_09735166 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '22295fb75838047b01_05173597';
+$_smarty_tpl->properties['nocache_hash'] = '283505fb76932c5bf63_08094932';
 ?>
 <!DOCTYPE html>
 <html>
@@ -114,25 +114,25 @@ echo $_SESSION['option']['account'];
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">昵称：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="username" name="real_name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                        <input id="username" name="real_name" class="form-control" type="text" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">账号：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="email" name="account" class="form-control" type="email">
+                                                        <input id="email" name="account" class="form-control" type="email" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">密码：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="password-add" name="password" class="form-control" type="password">
+                                                        <input id="password-add" name="password" class="form-control" type="password" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">确认密码：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                                                        <input id="confirm_password" name="confirm_password" class="form-control" type="password" required="" aria-required="true">
                                                         <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
                                                     </div>
                                                 </div>
@@ -213,34 +213,26 @@ $_smarty_tpl->tpl_vars['v'] = $foreach_v_Sav;
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">昵称：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="real_name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                        <input name="real_name" class="form-control" type="text" required="" aria-required="true" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">账号：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="account" class="form-control" type="email"  disabled="" placeholder="已被禁用">
+                                                        <input name="account" class="form-control" type="email"  disabled="" placeholder="已被禁用" msg="请输入账号">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">密码：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="password-edit" name="password" class="form-control" type="password">
+                                                        <input id="password-edit" name="password" class="form-control" type="password" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">确认密码：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="confirm_password2" name="confirm_password" class="form-control" type="password">
+                                                        <input id="confirm_password2" name="confirm_password" class="form-control" type="password" required="" aria-required="true">
                                                         <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">管理员类型：</label>
-                                                    <div class="col-sm-8">
-                                                        <div class="radio i-checks">
-                                                            <label class=""><input type="radio" name="admin_type" value="1" checked>系统管理员</label>
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="js-html"></div>
@@ -302,22 +294,6 @@ $_smarty_tpl->tpl_vars['v'] = $foreach_v_Sav;
 >
             <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/datapicker/bootstrap-datepicker.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/validate/jquery.validate.min.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/validate/messages_zh.min.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/form-validate.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
 /js/plugins/iCheck/icheck.min.js"><?php echo '</script'; ?>
 >
             
@@ -356,8 +332,11 @@ $_smarty_tpl->tpl_vars['v'] = $foreach_v_Sav;
                     submitAjax($(this),function(res){
                         if(res.success){
                             $('.close').trigger('click');
-                            layer.msg(res.msg);
-                            getAdminList();
+                            layer.msg(res.msg,{icon:1,time:1200},function(){
+                                getAdminList();
+                            });
+                        }else{
+                            layer.msg(res.msg,{icon:2,time:1200});
                         }
                     });
                     return false;

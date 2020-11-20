@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2020-11-12 01:52:50
+<?php /* Smarty version 3.1.27, created on 2020-11-20 06:58:59
          compiled from "E:\wamp\www\BONLI\ci3\application\views\power\admin-table.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:12665fac957234f8a9_35803925%%*/
+/*%%SmartyHeaderCode:60395fb76933a4ccf6_07979221%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f13ada553b05ef1e9d4f38c5998e187bdbca48b6' => 
     array (
       0 => 'E:\\wamp\\www\\BONLI\\ci3\\application\\views\\power\\admin-table.html',
-      1 => 1605145968,
+      1 => 1605855537,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '12665fac957234f8a9_35803925',
+  'nocache_hash' => '60395fb76933a4ccf6_07979221',
   'variables' => 
   array (
     'adminlist' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5fac95723f7856_71226255',
+  'unifunc' => 'content_5fb76933b1fc26_43241109',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5fac95723f7856_71226255')) {
-function content_5fac95723f7856_71226255 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5fb76933b1fc26_43241109')) {
+function content_5fb76933b1fc26_43241109 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '12665fac957234f8a9_35803925';
+$_smarty_tpl->properties['nocache_hash'] = '60395fb76933a4ccf6_07979221';
 ?>
 <table class="table table-bordered table-hover">
     <thead>
@@ -135,12 +135,6 @@ $(function(){
     $("#page-div .start").html(start);
     $("#page-div .end").html(end);
 
-    // 首页、尾页 url
-    // var first_url = $("#page-first").next('li').children('a').attr('href');
-    // var last_url = $("#page-last").prev('li').children('a').attr('href');
-    // $("#page-first a").attr('href',first_url);
-    // $("#page-last a").attr('href',last_url);
-
     var time = $("#adminList").find("input[name='time']").val();
     // 上一页下一页改为post
     $("#page-div .paginate_button").click(function (event) {
@@ -157,26 +151,27 @@ $(function(){
     $("#ajaxAdminList .admin-edit").click(function(){
         var url = module + '/power/getAdminInfo';
         var admin_id = $(this).parent('td').parent('tr').find('td:first').attr('tmp-id');
-        post(url,{id:admin_id},function(r){
+        $.post(url,{id:admin_id},function(r){
             $("#modal-form-edit").find("input[name='real_name']").val(r.real_name);
             $("#modal-form-edit").find("input[name='account']").val(r.account);
-            $("#modal-form-edit").find("input[value='"+r.admin_type+"']").parent().trigger('click');
             $("#modal-form-edit").find("input[name='role_id']").val(r.role_id);
             $("#modal-form-edit").find("input[name='id']").val(r.id);
+            $("#modal-form-edit").find("input[name='password']").val('');
+            $("#modal-form-edit").find("input[name='confirm_password']").val('');
         });
     });
 
     // 编辑管理员
     $("#modal-form-edit form").submit(function(e){
+        
         submitAjax($(this),function(res){
             if(res.success){
                 $('.close').trigger('click');
-                layer.msg(res.msg,{
-                    icon: 1,
-                    time: 2000 //2秒关闭（如果不配置，默认是3秒）},function(){
-                },function(){
+                layer.msg(res.msg,{icon: 1,time: 1200},function(){
                     getAdminList();
                 });
+            }else{
+                layer.msg(res.msg,{icon: 2,time: 1200});
             }
         });
         return false;
@@ -193,10 +188,14 @@ $(function(){
                     var admin_id = $this.parent('td').parent('tr').find('td:first').attr('tmp-id');
                     ajaxStatus = true;
                     post(url,{id:admin_id},function(res){
-                        res.success && $('.close').trigger('click');
-                        layer.msg(res.msg,{icon:1},function(){
-                            getAdminList();
-                        });
+                        if(res.success==true){
+                            $('.close').trigger('click');
+                            layer.msg(res.msg,{icon:1},function(){
+                                getAdminList();
+                            });
+                        }else{
+                            layer.msg(res.msg,{icon:2});
+                        }
                     })
                 }else{
                     layer.msg(checkres.msg,{icon:2});

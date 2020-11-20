@@ -74,13 +74,13 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">菜单名称：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" required>
+                                                        <input name="name" class="form-control" type="text" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">controller/method：</label>
                                                     <div class="col-sm-8">
-                                                        <textarea class="form-control" name="action" required="welcome/index 多个用逗号隔开" aria-required="true"></textarea>
+                                                        <textarea class="form-control" name="action" required="" aria-required="true"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -97,7 +97,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">排序：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="order" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" value='0'>
+                                                        <input name="order" class="form-control" type="text" required="" aria-required="true" value='0'>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -142,13 +142,13 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">菜单名称：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                        <input name="name" class="form-control" type="text" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">controller/method：</label>
                                                     <div class="col-sm-8">
-                                                        <textarea class="form-control" name="action" required="welcome/index 多个用逗号隔开" aria-required="true"></textarea>
+                                                        <textarea class="form-control" name="action" required="" aria-required="true"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -164,7 +164,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">排序：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="order" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                        <input name="order" class="form-control" type="text" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -187,8 +187,6 @@
             {{include file="public/footer.html"}}
             <script src="{{$public}}/js/plugins/chosen/chosen.jquery.js"></script>
             <script src="{{$public}}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-            <script src="{{$public}}/js/plugins/validate/jquery.validate.min.js"></script>
-            <script src="{{$public}}/js/plugins/validate/messages_zh.min.js"></script>
             <script src="{{$public}}/js/plugins/switchery/switchery.js"></script>
             <script src="{{$public}}/js/plugins/iCheck/icheck.min.js"></script>
             <script src="{{$public}}/js/menu-list.js"></script>
@@ -249,9 +247,14 @@
                 // 点击添加菜单/子菜单
                 $("#modal-form-add form").submit(function(){
                     submitAjax($(this),function(res){
-                        res.success && $('.close').trigger('click');
-                        layer.msg(res.msg);
-                        getMenuList();
+                        if(res.success==true){
+                            $('.close').trigger('click');
+                            layer.msg(res.msg,{icon:1,time:1200},function(){
+                                getMenuList();
+                            });
+                        }else{
+                            layer.msg(res.msg,{icon:2,time:1200});
+                        }
                     });
                     return false;
                 });

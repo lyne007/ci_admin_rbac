@@ -1,6 +1,1 @@
-##创建数据库
----
-CREATE DATABASE ci3_admin;
-
-
----
+### 仅供初学者捣鼓使用

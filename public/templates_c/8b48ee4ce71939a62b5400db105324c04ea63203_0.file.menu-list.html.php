@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2020-11-12 01:54:34
+<?php /* Smarty version 3.1.27, created on 2020-11-20 07:06:05
          compiled from "E:\wamp\www\BONLI\ci3\application\views\power\menu-list.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:137665fac95dabe2c73_02549495%%*/
+/*%%SmartyHeaderCode:249365fb76add73d0a4_21544085%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b48ee4ce71939a62b5400db105324c04ea63203' => 
     array (
       0 => 'E:\\wamp\\www\\BONLI\\ci3\\application\\views\\power\\menu-list.html',
-      1 => 1605146047,
+      1 => 1605855948,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '137665fac95dabe2c73_02549495',
+  'nocache_hash' => '249365fb76add73d0a4_21544085',
   'variables' => 
   array (
     'public' => 0,
@@ -21,13 +21,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5fac95dac8ac17_54757856',
+  'unifunc' => 'content_5fb76add7c1dc5_64110913',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5fac95dac8ac17_54757856')) {
-function content_5fac95dac8ac17_54757856 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5fb76add7c1dc5_64110913')) {
+function content_5fb76add7c1dc5_64110913 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '137665fac95dabe2c73_02549495';
+$_smarty_tpl->properties['nocache_hash'] = '249365fb76add73d0a4_21544085';
 ?>
 <!DOCTYPE html>
 <html>
@@ -114,13 +114,13 @@ $_smarty_tpl->properties['nocache_hash'] = '137665fac95dabe2c73_02549495';
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">菜单名称：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" required>
+                                                        <input name="name" class="form-control" type="text" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">controller/method：</label>
                                                     <div class="col-sm-8">
-                                                        <textarea class="form-control" name="action" required="welcome/index 多个用逗号隔开" aria-required="true"></textarea>
+                                                        <textarea class="form-control" name="action" required="" aria-required="true"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -137,7 +137,7 @@ $_smarty_tpl->properties['nocache_hash'] = '137665fac95dabe2c73_02549495';
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">排序：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="order" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" value='0'>
+                                                        <input name="order" class="form-control" type="text" required="" aria-required="true" value='0'>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -183,13 +183,13 @@ $_smarty_tpl->properties['nocache_hash'] = '137665fac95dabe2c73_02549495';
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">菜单名称：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                        <input name="name" class="form-control" type="text" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">controller/method：</label>
                                                     <div class="col-sm-8">
-                                                        <textarea class="form-control" name="action" required="welcome/index 多个用逗号隔开" aria-required="true"></textarea>
+                                                        <textarea class="form-control" name="action" required="" aria-required="true"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -205,7 +205,7 @@ $_smarty_tpl->properties['nocache_hash'] = '137665fac95dabe2c73_02549495';
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">排序：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="order" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                        <input name="order" class="form-control" type="text" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -235,14 +235,6 @@ $_smarty_tpl->properties['nocache_hash'] = '137665fac95dabe2c73_02549495';
             <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
 /js/plugins/datapicker/bootstrap-datepicker.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/validate/jquery.validate.min.js"><?php echo '</script'; ?>
->
-            <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
-/js/plugins/validate/messages_zh.min.js"><?php echo '</script'; ?>
 >
             <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
@@ -314,9 +306,14 @@ $_smarty_tpl->properties['nocache_hash'] = '137665fac95dabe2c73_02549495';
                 // 点击添加菜单/子菜单
                 $("#modal-form-add form").submit(function(){
                     submitAjax($(this),function(res){
-                        res.success && $('.close').trigger('click');
-                        layer.msg(res.msg);
-                        getMenuList();
+                        if(res.success==true){
+                            $('.close').trigger('click');
+                            layer.msg(res.msg,{icon:1,time:1200},function(){
+                                getMenuList();
+                            });
+                        }else{
+                            layer.msg(res.msg,{icon:2,time:1200});
+                        }
                     });
                     return false;
                 });

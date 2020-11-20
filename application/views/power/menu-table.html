@@ -113,12 +113,17 @@ $(function(){
                     var menu_id = $this.parent('td').parent('tr').find('td:first').attr('tmp-id');
                     ajaxStatus = true;
                     post(url,{id:menu_id},function(res){
-                        res.success && $('.close').trigger('click');
-                        layer.msg(res.msg);
-                        getMenuList();
+                        if(res.success==true){
+                            $('.close').trigger('click');
+                            layer.msg(res.msg,{icon:1,time:1200},function(){
+                                getMenuList();
+                            });
+                        }else{
+                            layer.msg(res.msg,{icon:2,time:1200});
+                        }
                     })
                 }else{
-                    layer.msg(checkres.msg);
+                    layer.msg(checkres.msg,{icon:2,time:1200});
                 }
             });
         });
@@ -153,9 +158,14 @@ $(function(){
     // 编辑菜单
     $("#modal-form-edit form").submit(function(){
         submitAjax($(this),function(res){
-            res.success && $('.close').trigger('click');
-            layer.msg(res.msg);
-            getMenuList();
+            if(res.success==true){
+                $('.close').trigger('click');
+                layer.msg(res.msg,{icon:1,time:1200},function(){
+                    getMenuList();
+                });
+            }else{
+                layer.msg(res.msg,{icon:1,time:1200});
+            }
         });
         return false;
     });

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2020-11-12 01:54:53
+<?php /* Smarty version 3.1.27, created on 2020-11-20 07:09:20
          compiled from "E:\wamp\www\BONLI\ci3\application\views\power\menu-table.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:203695fac95edbbc0d8_09248887%%*/
+/*%%SmartyHeaderCode:236305fb76ba0151ed7_73905683%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8e78c8e51a4d9b3e4e72e0706ba42e03d05acc6a' => 
     array (
       0 => 'E:\\wamp\\www\\BONLI\\ci3\\application\\views\\power\\menu-table.html',
-      1 => 1605146091,
+      1 => 1605856138,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '203695fac95edbbc0d8_09248887',
+  'nocache_hash' => '236305fb76ba0151ed7_73905683',
   'variables' => 
   array (
     'menulist' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5fac95edc87306_72237713',
+  'unifunc' => 'content_5fb76ba0230989_06525052',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5fac95edc87306_72237713')) {
-function content_5fac95edc87306_72237713 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5fb76ba0230989_06525052')) {
+function content_5fb76ba0230989_06525052 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '203695fac95edbbc0d8_09248887';
+$_smarty_tpl->properties['nocache_hash'] = '236305fb76ba0151ed7_73905683';
 ?>
 <table class="table table-bordered">
     <thead>
@@ -179,12 +179,17 @@ $(function(){
                     var menu_id = $this.parent('td').parent('tr').find('td:first').attr('tmp-id');
                     ajaxStatus = true;
                     post(url,{id:menu_id},function(res){
-                        res.success && $('.close').trigger('click');
-                        layer.msg(res.msg);
-                        getMenuList();
+                        if(res.success==true){
+                            $('.close').trigger('click');
+                            layer.msg(res.msg,{icon:1,time:1200},function(){
+                                getMenuList();
+                            });
+                        }else{
+                            layer.msg(res.msg,{icon:2,time:1200});
+                        }
                     })
                 }else{
-                    layer.msg(checkres.msg);
+                    layer.msg(checkres.msg,{icon:2,time:1200});
                 }
             });
         });
@@ -219,9 +224,14 @@ $(function(){
     // 编辑菜单
     $("#modal-form-edit form").submit(function(){
         submitAjax($(this),function(res){
-            res.success && $('.close').trigger('click');
-            layer.msg(res.msg);
-            getMenuList();
+            if(res.success==true){
+                $('.close').trigger('click');
+                layer.msg(res.msg,{icon:1,time:1200},function(){
+                    getMenuList();
+                });
+            }else{
+                layer.msg(res.msg,{icon:1,time:1200});
+            }
         });
         return false;
     });

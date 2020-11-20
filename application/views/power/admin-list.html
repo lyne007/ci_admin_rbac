@@ -71,25 +71,25 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">昵称：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="username" name="real_name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                        <input id="username" name="real_name" class="form-control" type="text" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">账号：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="email" name="account" class="form-control" type="email">
+                                                        <input id="email" name="account" class="form-control" type="email" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">密码：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="password-add" name="password" class="form-control" type="password">
+                                                        <input id="password-add" name="password" class="form-control" type="password" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">确认密码：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                                                        <input id="confirm_password" name="confirm_password" class="form-control" type="password" required="" aria-required="true">
                                                         <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
                                                     </div>
                                                 </div>
@@ -154,7 +154,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">昵称：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="real_name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                                        <input name="real_name" class="form-control" type="text" required="" aria-required="true" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -166,13 +166,13 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">密码：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="password-edit" name="password" class="form-control" type="password">
+                                                        <input id="password-edit" name="password" class="form-control" type="password" required="" aria-required="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">确认密码：</label>
                                                     <div class="col-sm-8">
-                                                        <input id="confirm_password2" name="confirm_password" class="form-control" type="password">
+                                                        <input id="confirm_password2" name="confirm_password" class="form-control" type="password" required="" aria-required="true">
                                                         <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
                                                     </div>
                                                 </div>
@@ -213,10 +213,6 @@
             {{* 编辑管理员 end *}}
             {{include file="public/footer.html"}}
             <script src="{{$public}}/js/plugins/chosen/chosen.jquery.js"></script>
-            <script src="{{$public}}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-            <script src="{{$public}}/js/plugins/validate/jquery.validate.min.js"></script>
-            <script src="{{$public}}/js/plugins/validate/messages_zh.min.js"></script>
-            <script src="{{$public}}/js/form-validate.js"></script>
             <script src="{{$public}}/js/plugins/iCheck/icheck.min.js"></script>
             
             <script type="text/javascript">
@@ -253,8 +249,11 @@
                     submitAjax($(this),function(res){
                         if(res.success){
                             $('.close').trigger('click');
-                            layer.msg(res.msg);
-                            getAdminList();
+                            layer.msg(res.msg,{icon:1,time:1200},function(){
+                                getAdminList();
+                            });
+                        }else{
+                            layer.msg(res.msg,{icon:2,time:1200});
                         }
                     });
                     return false;

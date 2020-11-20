@@ -72,12 +72,6 @@ $(function(){
     $("#page-div .start").html(start);
     $("#page-div .end").html(end);
 
-    // 首页、尾页 url
-    // var first_url = $("#page-first").next('li').children('a').attr('href');
-    // var last_url = $("#page-last").prev('li').children('a').attr('href');
-    // $("#page-first a").attr('href',first_url);
-    // $("#page-last a").attr('href',last_url);
-
     var time = $("#adminList").find("input[name='time']").val();
     // 上一页下一页改为post
     $("#page-div .paginate_button").click(function (event) {
@@ -94,26 +88,27 @@ $(function(){
     $("#ajaxAdminList .admin-edit").click(function(){
         var url = module + '/power/getAdminInfo';
         var admin_id = $(this).parent('td').parent('tr').find('td:first').attr('tmp-id');
-        post(url,{id:admin_id},function(r){
+        $.post(url,{id:admin_id},function(r){
             $("#modal-form-edit").find("input[name='real_name']").val(r.real_name);
             $("#modal-form-edit").find("input[name='account']").val(r.account);
-            $("#modal-form-edit").find("input[value='"+r.admin_type+"']").parent().trigger('click');
             $("#modal-form-edit").find("input[name='role_id']").val(r.role_id);
             $("#modal-form-edit").find("input[name='id']").val(r.id);
+            $("#modal-form-edit").find("input[name='password']").val('');
+            $("#modal-form-edit").find("input[name='confirm_password']").val('');
         });
     });
 
     // 编辑管理员
     $("#modal-form-edit form").submit(function(e){
+        
         submitAjax($(this),function(res){
             if(res.success){
                 $('.close').trigger('click');
-                layer.msg(res.msg,{
-                    icon: 1,
-                    time: 2000 //2秒关闭（如果不配置，默认是3秒）},function(){
-                },function(){
+                layer.msg(res.msg,{icon: 1,time: 1200},function(){
                     getAdminList();
                 });
+            }else{
+                layer.msg(res.msg,{icon: 2,time: 1200});
             }
         });
         return false;
@@ -130,10 +125,14 @@ $(function(){
                     var admin_id = $this.parent('td').parent('tr').find('td:first').attr('tmp-id');
                     ajaxStatus = true;
                     post(url,{id:admin_id},function(res){
-                        res.success && $('.close').trigger('click');
-                        layer.msg(res.msg,{icon:1},function(){
-                            getAdminList();
-                        });
+                        if(res.success==true){
+                            $('.close').trigger('click');
+                            layer.msg(res.msg,{icon:1},function(){
+                                getAdminList();
+                            });
+                        }else{
+                            layer.msg(res.msg,{icon:2});
+                        }
                     })
                 }else{
                     layer.msg(checkres.msg,{icon:2});

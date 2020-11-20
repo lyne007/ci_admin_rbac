@@ -113,7 +113,6 @@ class Power extends MY_Controller {
 		unset($data['confirm_password']);
 		$data['password'] = md5($data['password']);
 		
-		$data['admin_type'] = 1;
 		$data['add_time'] = time();
 		$this->load->model('power_model');
 		$check_result = $this->power_model->checkAccount($data['account']);
@@ -147,8 +146,7 @@ class Power extends MY_Controller {
 			$this->ajaxReturn(['success'=>false,'msg'=>'两次密码不一致']);
 		}
 		unset($data['confirm_password']);
-		$data['password'] = md5($data['password'].'ICBC');
-		$data['admin_type']==1; 
+		$data['password'] = md5($data['password']);
 		$id = $data['id'];
 		unset($data['id']);
 		$this->load->model('power_model');

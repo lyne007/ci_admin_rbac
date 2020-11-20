@@ -72,7 +72,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">角色名称：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="name" class="form-control" type="text" aria-required="true" class="error" />
+                                                        <input name="name" class="form-control" type="text" required="" aria-required="true" class="error"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -149,12 +149,6 @@
             </div> 
             {{* 创建角色 end *}}
             {{include file="public/footer.html"}}
-            <script src="{{$public}}/js/plugins/chosen/chosen.jquery.js"></script>
-            <script src="{{$public}}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-            <script src="{{$public}}/js/plugins/validate/jquery.validate.min.js"></script>
-            <script src="{{$public}}/js/plugins/validate/messages_zh.min.js"></script>
-            <script src="{{$public}}/js/form-validate-role.js"></script>
-            <script src="{{$public}}/js/plugins/switchery/switchery.js"></script>
             <script type="text/javascript">
                 $(function(){
                     // 获取管理员列表
@@ -181,6 +175,16 @@
 
                     // 编辑管理员
                     $("#modal-form-editrole form").submit(function(e){
+                        var mark = true;
+                        $("#modal-form-editrole form").find('input').each(function(){
+                            var msg = $("#modal-form-editrole form").find("input[name='"+this.name+"']").attr('msg');
+                            if(this.value==''){
+                                layer.msg(msg,{icon:2,time:1200});
+                                mark = false;
+                                return mark;
+                            }
+                        });
+                        if(!mark) return false;
                         submitAjax($(this),function(res){
                             res.success && $('.close').trigger('click');
                             layer.msg(res.msg,{icon:1,time:1200},function(){
