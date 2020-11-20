@@ -65,6 +65,7 @@ $(function(){
         $("#form").find('input').each(function(){
             var msg = $("#form input[name='"+this.name+"']").attr('msg');
             if(this.value==''){
+                $(".yzm-reload").trigger('click');
                 $this.html('登 录').attr('disabled','disabled');
                 setTimeout(function(){$this.removeAttr('disabled')},1000);
                 layer.msg(msg,{icon:2,time:1200});
@@ -88,6 +89,7 @@ $(function(){
                 });
                 
             }else{
+                $(".yzm-reload").trigger('click');
                 layer.msg(res.msg,{icon:2,time:1200},function(){
                     $this.html('登 录');
                 });

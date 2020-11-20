@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2020-11-12 02:01:31
+<?php /* Smarty version 3.1.27, created on 2020-11-13 08:44:01
          compiled from "E:\wamp\www\BONLI\ci3\application\views\power\role-list.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:270155fac977b629455_32147191%%*/
+/*%%SmartyHeaderCode:7725fae47516593d7_01485221%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6a691f5b7a316344c60ab525e47f63aafd0ae1c5' => 
     array (
       0 => 'E:\\wamp\\www\\BONLI\\ci3\\application\\views\\power\\role-list.html',
-      1 => 1605146422,
+      1 => 1605257038,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '270155fac977b629455_32147191',
+  'nocache_hash' => '7725fae47516593d7_01485221',
   'variables' => 
   array (
     'public' => 0,
@@ -21,13 +21,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5fac977b6a6460_41897246',
+  'unifunc' => 'content_5fae47516a3763_72612971',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5fac977b6a6460_41897246')) {
-function content_5fac977b6a6460_41897246 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5fae47516a3763_72612971')) {
+function content_5fae47516a3763_72612971 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '270155fac977b629455_32147191';
+$_smarty_tpl->properties['nocache_hash'] = '7725fae47516593d7_01485221';
 ?>
 <!DOCTYPE html>
 <html>
@@ -111,7 +111,7 @@ $_smarty_tpl->properties['nocache_hash'] = '270155fac977b629455_32147191';
                                                 <div class="form-group">
                                                     <label class="col-sm-3 control-label">角色名称：</label>
                                                     <div class="col-sm-8">
-                                                        <input name="name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" />
+                                                        <input name="name" class="form-control" type="text" aria-required="true" class="error" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

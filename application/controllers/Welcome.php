@@ -11,6 +11,7 @@ class Welcome extends MY_Controller {
 	
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->assign('title','主页');
+		$this->display('main/index.html');
 	}
 }

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2020-11-12 01:49:03
+<?php /* Smarty version 3.1.27, created on 2020-11-20 05:46:32
          compiled from "E:\wamp\www\BONLI\ci3\application\views\power\admin-list.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:80975fac948f217162_35714740%%*/
+/*%%SmartyHeaderCode:22295fb75838047b01_05173597%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '05fc578bedc2482c1ba458331e39c4303a1be87b' => 
     array (
       0 => 'E:\\wamp\\www\\BONLI\\ci3\\application\\views\\power\\admin-list.html',
-      1 => 1605145732,
+      1 => 1605851189,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '80975fac948f217162_35714740',
+  'nocache_hash' => '22295fb75838047b01_05173597',
   'variables' => 
   array (
     'public' => 0,
@@ -23,13 +23,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5fac948f3111a6_83755942',
+  'unifunc' => 'content_5fb75838168c49_73674890',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5fac948f3111a6_83755942')) {
-function content_5fac948f3111a6_83755942 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5fb75838168c49_73674890')) {
+function content_5fb75838168c49_73674890 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '80975fac948f217162_35714740';
+$_smarty_tpl->properties['nocache_hash'] = '22295fb75838047b01_05173597';
 ?>
 <!DOCTYPE html>
 <html>
@@ -134,14 +134,6 @@ echo $_SESSION['option']['account'];
                                                     <div class="col-sm-8">
                                                         <input id="confirm_password" name="confirm_password" class="form-control" type="password">
                                                         <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">管理员类型：</label>
-                                                    <div class="col-sm-8">
-                                                        <div class="radio i-checks">
-                                                            <label class=""><input type="radio" name="admin_type" value="1" checked>系统管理员</label>
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="js-html"></div>

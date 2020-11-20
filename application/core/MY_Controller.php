@@ -22,7 +22,7 @@ class MY_Controller extends CI_Controller {
          // 检查登录
         $this->checkLogin();
         // 菜单显示
-        // $this->navbarByAdmin();
+        $this->navbarByAdmin();
     }
     
     /**

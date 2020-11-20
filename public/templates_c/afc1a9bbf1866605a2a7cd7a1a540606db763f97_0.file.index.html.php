@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2020-11-12 01:31:03
+<?php /* Smarty version 3.1.27, created on 2020-11-20 05:38:37
          compiled from "E:\wamp\www\BONLI\ci3\application\views\login\index.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:286995fac905722b826_82628734%%*/
+/*%%SmartyHeaderCode:155965fb7565d3b2142_67437107%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'afc1a9bbf1866605a2a7cd7a1a540606db763f97' => 
     array (
       0 => 'E:\\wamp\\www\\BONLI\\ci3\\application\\views\\login\\index.html',
-      1 => 1605144388,
+      1 => 1605850715,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '286995fac905722b826_82628734',
+  'nocache_hash' => '155965fb7565d3b2142_67437107',
   'variables' => 
   array (
     'public' => 0,
@@ -21,13 +21,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5fac90572855b8_63980778',
+  'unifunc' => 'content_5fb7565d3fc4d4_27236531',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5fac90572855b8_63980778')) {
-function content_5fac90572855b8_63980778 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5fb7565d3fc4d4_27236531')) {
+function content_5fb7565d3fc4d4_27236531 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '286995fac905722b826_82628734';
+$_smarty_tpl->properties['nocache_hash'] = '155965fb7565d3b2142_67437107';
 ?>
 <!DOCTYPE html>
 <html><head>
@@ -113,6 +113,7 @@ $(function(){
         $("#form").find('input').each(function(){
             var msg = $("#form input[name='"+this.name+"']").attr('msg');
             if(this.value==''){
+                $(".yzm-reload").trigger('click');
                 $this.html('登 录').attr('disabled','disabled');
                 setTimeout(function(){$this.removeAttr('disabled')},1000);
                 layer.msg(msg,{icon:2,time:1200});
@@ -136,6 +137,7 @@ $(function(){
                 });
                 
             }else{
+                $(".yzm-reload").trigger('click');
                 layer.msg(res.msg,{icon:2,time:1200},function(){
                     $this.html('登 录');
                 });

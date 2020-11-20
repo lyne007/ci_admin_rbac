@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2020-11-12 01:50:57
+<?php /* Smarty version 3.1.27, created on 2020-11-20 05:42:08
          compiled from "E:\wamp\www\BONLI\ci3\application\views\public\navbar.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:96565fac950147e708_90215255%%*/
+/*%%SmartyHeaderCode:87065fb757304cf854_09292633%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,29 +9,29 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9b1d086de7775da9cb8f38ff3ca4a853f0647e59' => 
     array (
       0 => 'E:\\wamp\\www\\BONLI\\ci3\\application\\views\\public\\navbar.html',
-      1 => 1605145851,
+      1 => 1605850904,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '96565fac950147e708_90215255',
+  'nocache_hash' => '87065fb757304cf854_09292633',
   'variables' => 
   array (
+    'public' => 0,
     'module' => 0,
     'navbar_list' => 0,
     'title' => 0,
     'n' => 0,
     'cn' => 0,
-    'nav' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5fac95015d6355_23929760',
+  'unifunc' => 'content_5fb757307c1781_03030572',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5fac95015d6355_23929760')) {
-function content_5fac95015d6355_23929760 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5fb757307c1781_03030572')) {
+function content_5fb757307c1781_03030572 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '96565fac950147e708_90215255';
+$_smarty_tpl->properties['nocache_hash'] = '87065fb757304cf854_09292633';
 ?>
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="nav-close"><i class="fa fa-times-circle"></i></div>
@@ -39,7 +39,8 @@ $_smarty_tpl->properties['nocache_hash'] = '96565fac950147e708_90215255';
         <ul class="nav" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
-                    <span><img class="img-circle mb10 " style="border-radius:0%" width="60" alt="image-logo" src="" /></span>
+                    <span><img class="img-circle mb10 " style="border-radius:0%" width="60" alt="image-logo" src="<?php echo $_smarty_tpl->tpl_vars['public']->value;?>
+/images/logo-nav.png" /></span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">
                         <span class="clear">
                             <span class="block m-t-xs">
@@ -114,36 +115,12 @@ $_smarty_tpl->tpl_vars['n'] = $foreach_n_Sav;
 }
 ?>
             <?php } else { ?>
-            <li class="<?php if ($_smarty_tpl->tpl_vars['nav']->value == 'h-m') {?>active<?php }?>">
+            <li class="active">
                 <a class="J_menuItem" href="javascript:;">
                     <i class="fa fa-home"></i>
-                    <span class="nav-label">主页2</span>
+                    <span class="nav-label">主页</span>
                 </a>
             </li>
-            <?php if ($_SESSION['login']['account'] == 'lyne007@163.com') {?>
-
-            <li class="<?php if ($_smarty_tpl->tpl_vars['nav']->value == 'a-l' || $_smarty_tpl->tpl_vars['nav']->value == 'a-a' || $_smarty_tpl->tpl_vars['nav']->value == 'r-l' || $_smarty_tpl->tpl_vars['nav']->value == 'r-a' || $_smarty_tpl->tpl_vars['nav']->value == 'p-l') {?>active<?php }?>">
-                <a href="javascript:;">
-                    <i class="fa fa-cogs"></i>
-                    <span class="nav-label">权限管理</span>
-                    <span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level">
-                    <li <?php if ($_smarty_tpl->tpl_vars['nav']->value == 'a-l') {?>class="active"<?php }?>>
-                        <a class="J_menuItem" href="<?php echo $_smarty_tpl->tpl_vars['module']->value;?>
-/power/admin">管理员查询</a>
-                    </li>
-                    <li <?php if ($_smarty_tpl->tpl_vars['nav']->value == 'r-l') {?>class="active"<?php }?>>
-                        <a class="J_menuItem" href="<?php echo $_smarty_tpl->tpl_vars['module']->value;?>
-/power/role">角色查询</a>
-                    </li>
-                    <li <?php if ($_smarty_tpl->tpl_vars['nav']->value == 'p-l') {?>class="active"<?php }?>>
-                        <a class="J_menuItem" href="<?php echo $_smarty_tpl->tpl_vars['module']->value;?>
-/power/menu">菜单查询</a>
-                    </li>
-                </ul>
-            </li>
-            <?php }?>
             <?php }?>
             <br>
             <br>

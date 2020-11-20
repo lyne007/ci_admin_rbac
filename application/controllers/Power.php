@@ -104,6 +104,9 @@ class Power extends MY_Controller {
 	 */
 	public function ajaxAddAdmin(){
 		$data = $this->input->post(null,true);
+		if(!$data['real_name'] || !$data['account'] || !$data['password']){
+			$this->ajaxReturn(['success'=>false,'msg'=>'请完善表单']);
+		}
 		if($data['password'] != $data['confirm_password']){
 			$this->ajaxReturn(['success'=>false,'msg'=>'两次密码不一致']);
 		}
