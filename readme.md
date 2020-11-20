@@ -2,4 +2,15 @@
 
 
 #### 效果：
-![image](图片的绝对路径)
+
+![image](https://raw.githubusercontent.com/lyne007/ci_admin_rbac/branch/login.jpg)
+
+![image](https://raw.githubusercontent.com/lyne007/ci_admin_rbac/branch/admin-list.jpg)
+
+![image](https://raw.githubusercontent.com/lyne007/ci_admin_rbac/branch/menu-add.jpg)
+
+![image](https://raw.githubusercontent.com/lyne007/ci_admin_rbac/branch/menu-list.jpg)
+
+![image](https://raw.githubusercontent.com/lyne007/ci_admin_rbac/branch/power.jpg)
+
+![image](https://raw.githubusercontent.com/lyne007/ci_admin_rbac/branch/role-list.jpg)
